@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MVERI | Advancing Quality. Building Trust.</title>
+  <style>
+    :root {
+      --navy: #06165a;
+      --blue: #064df5;
+      --blue-2: #2f7bff;
+      --light: #f6f9ff;
+      --muted: #6d78a8;
+      --line: #a8c0ff;
+      --white: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--navy);
+      background:
+        radial-gradient(circle at 78% 22%, rgba(86, 136, 255, .18), transparent 32%),
+        radial-gradient(circle at 5% 8%, rgba(255, 255, 255, .95), transparent 28%),
+        linear-gradient(135deg, #fbfdff 0%, #eef5ff 44%, #e8f1ff 100%);
+      overflow-x: hidden;
+    }
+
+    .page {
+      position: relative;
+      min-height: 100vh;
+      padding: 34px 44px 0;
+      overflow: hidden;
+    }
+
+    .page::before,
+    .page::after {
+      content: "";
+      position: absolute;
+      bottom: 92px;
+      width: 300px;
+      height: 160px;
+      opacity: .38;
+      background-image: radial-gradient(circle, #79a5ff 1.3px, transparent 1.3px);
+      background-size: 12px 12px;
+      border-radius: 50%;
+      transform: rotate(-16deg);
+      pointer-events: none;
+    }
+
+    .page::before { left: -115px; }
+    .page::after { right: -120px; transform: rotate(16deg); }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 36px;
+      max-width: 1760px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 5;
+    }
+
+    .brand,
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-weight: 900;
+      letter-spacing: -2px;
+      font-size: clamp(34px, 3vw, 54px);
+      line-height: 1;
+    }
+
+    .seal {
+      width: 74px;
+      height: 74px;
+      border: 4px solid var(--blue);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      position: relative;
+      color: var(--blue);
+      background: rgba(255,255,255,.45);
+      box-shadow: inset 0 0 0 4px rgba(6, 77, 245, .08);
+      flex: 0 0 auto;
+    }
+
+    .seal::before {
+      content: "MODERN VOCATIONAL RESEARCH";
+      position: absolute;
+      inset: 5px;
+      border: 2px solid currentColor;
+      border-radius: 50%;
+      font-size: 6px;
+      font-weight: 800;
+      display: grid;
+      place-items: start center;
+      padding-top: 3px;
+    }
+
+    .seal svg { width: 44px; height: 44px; position: relative; z-index: 1; }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: clamp(28px, 5vw, 80px);
+      font-size: 22px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    nav a,
+    .language span {
+      color: var(--navy);
+      text-decoration: none;
+    }
+
+    .language {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 21px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .language svg { width: 31px; height: 31px; color: var(--blue); }
+    .language .divider { width: 1px; height: 27px; background: #94aaf2; }
+
+    .hero {
+      position: relative;
+      z-index: 2;
+      max-width: 1760px;
+      margin: 62px auto 0;
+      display: grid;
+      grid-template-columns: minmax(560px, 1fr) minmax(620px, 1fr);
+      align-items: center;
+      gap: 36px;
+    }
+
+    .copy { padding: 42px 0 18px 50px; }
+
+    h1 {
+      margin: 0 0 26px;
+      max-width: 760px;
+      font-size: clamp(66px, 5.5vw, 100px);
+      line-height: .99;
+      letter-spacing: -4.5px;
+      color: var(--navy);
+    }
+
+    .tagline {
+      margin: 0 0 28px;
+      font-size: clamp(34px, 3vw, 50px);
+      line-height: 1.1;
+      font-weight: 900;
+      letter-spacing: -1.8px;
+      color: var(--blue);
+    }
+
+    .description {
+      max-width: 780px;
+      margin: 0 0 44px;
+      color: #071c83;
+      font-size: 25px;
+      line-height: 1.65;
+      font-weight: 500;
+    }
+
+    .actions { display: flex; gap: 34px; flex-wrap: wrap; }
+
+    .btn {
+      min-width: 320px;
+      height: 68px;
+      border: 1.8px solid var(--blue);
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      text-decoration: none;
+      font-size: 21px;
+      font-weight: 750;
+      color: var(--blue);
+      background: rgba(255,255,255,.5);
+      box-shadow: 0 10px 22px rgba(25, 87, 220, .08);
+    }
+
+    .btn.primary {
+      color: white;
+      background: linear-gradient(135deg, #0657ff, #003fe2);
+      box-shadow: 0 16px 30px rgba(6, 77, 245, .24);
+    }
+
+    .btn svg { width: 33px; height: 24px; }
+
+    .visual {
+      min-height: 610px;
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+
+    .rings {
+      position: absolute;
+      right: -40px;
+      bottom: 16px;
+      width: min(830px, 92%);
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at center, rgba(255,255,255,.94) 0 38%, rgba(214,227,255,.9) 39% 48%, rgba(255,255,255,.95) 49% 61%, rgba(198,216,252,.78) 62% 72%, rgba(255,255,255,.72) 73%);
+      box-shadow: inset 0 -18px 30px rgba(58, 91, 159, .12), 0 25px 45px rgba(53, 94, 170, .18);
+    }
+
+    .pyramid {
+      position: absolute;
+      right: 85px;
+      bottom: 125px;
+      width: 430px;
+      height: 355px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0;
+      filter: drop-shadow(0 24px 34px rgba(4, 43, 138, .26));
+    }
+
+    .cap {
+      width: 215px;
+      height: 115px;
+      background: linear-gradient(135deg, #4b8cff 0 50%, #0d47c9 51%);
+      clip-path: polygon(50% 0, 100% 78%, 50% 100%, 0 78%);
+      margin-bottom: -3px;
+    }
+
+    .block {
+      border-radius: 4px;
+      transform: skewY(-1deg);
+      box-shadow: 0 16px 28px rgba(13, 54, 149, .22);
+    }
+
+    .block.one { width: 280px; height: 78px; background: linear-gradient(160deg, #ffffff, #d9e6ff); }
+    .block.two { width: 360px; height: 84px; background: linear-gradient(160deg, #c9dcff, #82adff); }
+    .block.three { width: 430px; height: 92px; background: linear-gradient(160deg, #0d5dff, #003eb6); }
+
+    .framework {
+      position: absolute;
+      left: 12px;
+      top: 35px;
+      width: 345px;
+      height: 390px;
+      border: 1.5px solid rgba(80, 132, 255, .47);
+      border-radius: 18px;
+      padding: 40px 28px;
+      background: linear-gradient(135deg, rgba(255,255,255,.58), rgba(238,245,255,.34));
+      backdrop-filter: blur(10px);
+      box-shadow: 0 24px 55px rgba(29, 81, 179, .11);
+    }
+
+    .framework h2 { margin: 0 0 28px; font-size: 21px; }
+    .shield { position: absolute; right: 30px; top: 38px; width: 64px; height: 78px; color: #2d78ff; filter: drop-shadow(0 10px 16px rgba(17,88,230,.22)); }
+    .metric { display: grid; grid-template-columns: 45px 1fr; gap: 16px; align-items: center; margin: 22px 0; }
+    .metric-icon { width: 45px; height: 45px; border: 1px solid #c4d5ff; border-radius: 50%; display: grid; place-items: center; background: #edf4ff; color: var(--blue); }
+    .metric-icon svg { width: 25px; height: 25px; }
+    .metric strong { display: block; font-size: 14px; margin-bottom: 8px; }
+    .bar, .bar::after { display: block; height: 4px; border-radius: 8px; background: #cbdafd; }
+    .bar { width: 140px; position: relative; }
+    .bar::after { content: ""; width: 70%; background: #a9c2f5; margin-top: 10px; }
+
+    .features {
+      position: relative;
+      z-index: 3;
+      max-width: 1690px;
+      margin: 0 auto 10px;
+      min-height: 145px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.78);
+      box-shadow: 0 24px 55px rgba(31, 76, 165, .12);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      align-items: center;
+      padding: 22px 50px;
+    }
+
+    .feature { display: grid; grid-template-columns: 98px 1fr; gap: 28px; align-items: center; min-height: 94px; }
+    .feature + .feature { border-left: 1.5px solid #88a8ef; padding-left: 56px; }
+    .feature-icon { width: 96px; height: 96px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(145deg, white, #edf4ff); box-shadow: 0 8px 20px rgba(39, 94, 188, .18); color: var(--blue); }
+    .feature-icon svg { width: 58px; height: 58px; }
+    .feature h3 { margin: 0 0 8px; font-size: 23px; line-height: 1.1; }
+    .feature p { margin: 0; font-size: 17px; line-height: 1.55; color: #071c83; }
+
+    footer {
+      margin: 0 -44px;
+      min-height: 110px;
+      display: grid;
+      grid-template-columns: 360px 1fr auto;
+      align-items: center;
+      gap: 36px;
+      padding: 24px 74px;
+      color: white;
+      background: linear-gradient(90deg, #062365, #061c56 55%, #03133f);
+    }
+
+    footer .seal { width: 62px; height: 62px; border-color: #dce7ff; color: #dce7ff; }
+    footer .seal svg { width: 36px; height: 36px; }
+    .footer-brand { font-size: 42px; letter-spacing: -1px; }
+    .footer-copy h4 { margin: 0 0 8px; font-size: 23px; }
+    .footer-copy p, .copyright { margin: 0; color: #b7c5ec; font-size: 19px; }
+
+    @media (max-width: 1180px) {
+      .page { padding: 24px 24px 0; }
+      header, nav { gap: 20px; }
+      nav { display: none; }
+      .hero { grid-template-columns: 1fr; margin-top: 28px; }
+      .copy { padding: 20px 0; }
+      .visual { min-height: 540px; }
+      .features { grid-template-columns: 1fr; gap: 18px; padding: 28px; }
+      .feature + .feature { border-left: 0; border-top: 1px solid #bed0ff; padding-left: 0; padding-top: 18px; }
+      footer { grid-template-columns: 1fr; margin: 0 -24px; text-align: center; justify-items: center; }
+    }
+
+    @media (max-width: 680px) {
+      .brand { font-size: 34px; gap: 10px; }
+      .seal { width: 54px; height: 54px; }
+      .seal::before { display: none; }
+      .seal svg { width: 32px; }
+      .language { font-size: 16px; gap: 9px; }
+      h1 { font-size: 48px; letter-spacing: -2px; }
+      .tagline { font-size: 30px; }
+      .description { font-size: 18px; }
+      .btn { min-width: 100%; }
+      .framework { position: relative; left: auto; top: auto; width: 100%; margin-bottom: 20px; }
+      .visual { min-height: 760px; place-items: start center; }
+      .pyramid { right: 50%; transform: translateX(50%) scale(.78); bottom: 95px; }
+      .rings { right: 50%; transform: translateX(50%); width: 660px; }
+      .feature { grid-template-columns: 72px 1fr; gap: 18px; }
+      .feature-icon { width: 72px; height: 72px; }
+      .feature-icon svg { width: 42px; height: 42px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header aria-label="Site header">
+      <div class="brand" aria-label="MVERI home">
+        <span class="seal" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3"><circle cx="32" cy="32" r="21"/><path d="M32 11v42M11 32h42M18 47c7-7 21-7 28 0M18 17c7 7 21 7 28 0"/><path d="M25 12c-9 13-9 27 0 40M39 12c9 13 9 27 0 40"/></svg>
+        </span>
+        <span>MVERI</span>
+      </div>
+      <nav aria-label="Primary navigation">
+        <a href="#standards">Standards &amp; Metrics</a>
+        <a href="#research">Research &amp; Publications</a>
+        <a href="#consulting">Consulting Services</a>
+        <a href="#about">About Us</a>
+      </nav>
+      <div class="language" aria-label="Language selector">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 4 6 4 9s-1 6-4 9M12 3c-3 3-4 6-4 9s1 6 4 9"/></svg>
+        <span>EN</span><span class="divider"></span><span>CN</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="copy">
+          <h1 id="hero-title">Advancing Quality.<br>Building Trust.</h1>
+          <p class="tagline">Empowering Vocational Education.</p>
+          <p class="description">We advance quality in vocational education through international standards, evidence-based research, and expert guidance—helping institutions build trust and drive excellence worldwide.</p>
+          <div class="actions">
+            <a class="btn primary" href="#services">Explore Our Services <svg viewBox="0 0 32 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12h28M19 2l10 10-10 10"/></svg></a>
+            <a class="btn" href="#consultation">Request a Consultation <svg viewBox="0 0 32 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12h28M19 2l10 10-10 10"/></svg></a>
+          </div>
+        </div>
+
+        <div class="visual" aria-hidden="true">
+          <div class="framework">
+            <h2>Quality Framework</h2>
+            <svg class="shield" viewBox="0 0 64 78" fill="currentColor"><path d="M32 2 56 11v18c0 19-10 35-24 44C18 64 8 48 8 29V11L32 2Z" opacity=".85"/><path d="m21 36 8 8 16-22" fill="none" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="metric"><span class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 10h14v10H5zM8 10V7a4 4 0 0 1 8 0v3M8 14h8"/></svg></span><span><strong>Standards</strong><i class="bar"></i></span></div>
+            <div class="metric"><span class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v15H6zM14 2v6h6M9 14h6M9 18h4"/></svg></span><span><strong>Research</strong><i class="bar"></i></span></div>
+            <div class="metric"><span class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h14v18H5zM9 13l2 2 5-6M8 2h8"/></svg></span><span><strong>Evaluation</strong><i class="bar"></i></span></div>
+            <div class="metric"><span class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a8 8 0 0 0 0-6M4.6 9a8 8 0 0 0 0 6M15 4.6a8 8 0 0 0-6 0M9 19.4a8 8 0 0 0 6 0"/></svg></span><span><strong>Certification</strong><i class="bar"></i></span></div>
+          </div>
+          <div class="rings"></div>
+          <div class="pyramid"><div class="cap"></div><div class="block one"></div><div class="block two"></div><div class="block three"></div></div>
+        </div>
+      </section>
+
+      <section class="features" aria-label="Key benefits">
+        <article class="feature" id="standards"><span class="feature-icon"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4"><circle cx="32" cy="32" r="25"/><path d="M7 32h50M32 7c10 10 12 39 0 50M32 7C22 17 20 46 32 57"/></svg></span><div><h3>International Standards</h3><p>Aligned with global frameworks to elevate vocational excellence.</p></div></article>
+        <article class="feature" id="research"><span class="feature-icon"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4"><path d="M12 52h10V32H12zM28 52h10V22H28zM44 52h10V12H44zM14 24l14-12 12 9 14-15M48 6h8v8"/></svg></span><div><h3>Evidence-Based Insights</h3><p>Rigorous research and data-driven methodologies you can trust.</p></div></article>
+        <article class="feature"><span class="feature-icon"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4"><path d="M32 5 54 13v16c0 16-9 27-22 34C19 56 10 45 10 29V13z"/><path d="m22 32 7 7 15-17"/></svg></span><div><h3>Trusted Impact</h3><p>Independent guidance that strengthens quality and delivers measurable results.</p></div></article>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-brand"><span class="seal" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3"><circle cx="32" cy="32" r="21"/><path d="M32 11v42M11 32h42M18 47c7-7 21-7 28 0M18 17c7 7 21 7 28 0"/><path d="M25 12c-9 13-9 27 0 40M39 12c9 13 9 27 0 40"/></svg></span>MVERI</div>
+      <div class="footer-copy"><h4>Modern Vocational Education Research Institute</h4><p>Advancing quality. Building trust. Empowering vocational education worldwide.</p></div>
+      <p class="copyright">© 2015–2025 MVERI. All rights reserved.</p>
+    </footer>
+  </div>
+</body>
+</html>
